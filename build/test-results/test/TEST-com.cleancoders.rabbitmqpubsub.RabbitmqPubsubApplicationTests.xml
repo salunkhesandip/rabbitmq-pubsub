@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="com.cleancoders.rabbitmqpubsub.RabbitmqPubsubApplicationTests" tests="1" skipped="0" failures="0" errors="0" timestamp="2026-04-26T22:30:50.894Z" hostname="SANDIP-PC01" time="11.407">
+  <properties/>
+  <testcase name="contextLoads()" classname="com.cleancoders.rabbitmqpubsub.RabbitmqPubsubApplicationTests" time="0.111"/>
+  <system-out><![CDATA[17:30:51.292 [Test worker] INFO org.springframework.test.context.support.AnnotationConfigContextLoaderUtils -- Could not detect default configuration classes for test class [com.cleancoders.rabbitmqpubsub.RabbitmqPubsubApplicationTests]: RabbitmqPubsubApplicationTests does not declare any static, non-private, non-final, nested classes annotated with @Configuration.
+17:30:51.533 [Test worker] INFO org.springframework.boot.test.context.SpringBootTestContextBootstrapper -- Found @SpringBootConfiguration com.cleancoders.rabbitmqpubsub.RabbitmqPubsubApplication for test class com.cleancoders.rabbitmqpubsub.RabbitmqPubsubApplicationTests
+17:30:51.739 [Test worker] INFO org.springframework.test.context.support.AnnotationConfigContextLoaderUtils -- Could not detect default configuration classes for test class [com.cleancoders.rabbitmqpubsub.RabbitmqPubsubApplicationTests]: RabbitmqPubsubApplicationTests does not declare any static, non-private, non-final, nested classes annotated with @Configuration.
+17:30:51.742 [Test worker] INFO org.springframework.boot.test.context.SpringBootTestContextBootstrapper -- Found @SpringBootConfiguration com.cleancoders.rabbitmqpubsub.RabbitmqPubsubApplication for test class com.cleancoders.rabbitmqpubsub.RabbitmqPubsubApplicationTests
+
+  .   ____          _            __ _ _
+ /\\ / ___'_ __ _ _(_)_ __  __ _ \ \ \ \
+( ( )\___ | '_ | '_| | '_ \/ _` | \ \ \ \
+ \\/  ___)| |_)| | | | | || (_| |  ) ) ) )
+  '  |____| .__|_| |_|_| |_\__, | / / / /
+ =========|_|==============|___/=/_/_/_/
+
+ :: Spring Boot ::                (v4.0.5)
+
+2026-04-26T17:30:52.534-05:00  INFO 8108 --- [rabbitmq-pubsub] [    Test worker] c.c.r.RabbitmqPubsubApplicationTests     : Starting RabbitmqPubsubApplicationTests using Java 25.0.2 with PID 8108 (started by sandipsalunkhe in C:\Sandip-Data\code\repo\rabbitmq-pubsub)
+2026-04-26T17:30:52.536-05:00 DEBUG 8108 --- [rabbitmq-pubsub] [    Test worker] c.c.r.RabbitmqPubsubApplicationTests     : Running with Spring Boot v4.0.5, Spring v7.0.6
+2026-04-26T17:30:52.537-05:00  INFO 8108 --- [rabbitmq-pubsub] [    Test worker] c.c.r.RabbitmqPubsubApplicationTests     : No active profile set, falling back to 1 default profile: "default"
+2026-04-26T17:31:01.991-05:00  INFO 8108 --- [rabbitmq-pubsub] [    Test worker] o.s.a.r.l.SimpleMessageListenerContainer : Broker not available; cannot force queue declarations during start: Cannot invoke "org.springframework.amqp.rabbit.connection.Connection.close()" because "connection" is null
+2026-04-26T17:31:02.041-05:00 ERROR 8108 --- [rabbitmq-pubsub] [ntContainer#0-1] o.s.a.r.l.SimpleMessageListenerContainer : Failed to check/redeclare auto-delete queue(s).
+
+java.lang.NullPointerException: Cannot invoke "org.springframework.amqp.rabbit.connection.Connection.createChannel(boolean)" because "connection" is null
+	at org.springframework.amqp.rabbit.core.RabbitTemplate.doExecute(RabbitTemplate.java:2243) ~[spring-rabbit-4.0.2.jar:4.0.2]
+	at org.springframework.amqp.rabbit.core.RabbitTemplate.execute(RabbitTemplate.java:2213) ~[spring-rabbit-4.0.2.jar:4.0.2]
+	at org.springframework.amqp.rabbit.core.RabbitTemplate.execute(RabbitTemplate.java:2193) ~[spring-rabbit-4.0.2.jar:4.0.2]
+	at org.springframework.amqp.rabbit.core.RabbitAdmin.getQueueInfo(RabbitAdmin.java:472) ~[spring-rabbit-4.0.2.jar:4.0.2]
+	at org.springframework.amqp.rabbit.core.RabbitAdmin.getQueueProperties(RabbitAdmin.java:456) ~[spring-rabbit-4.0.2.jar:4.0.2]
+	at org.springframework.amqp.rabbit.listener.AbstractMessageListenerContainer.attemptDeclarations(AbstractMessageListenerContainer.java:1959) ~[spring-rabbit-4.0.2.jar:4.0.2]
+	at org.springframework.amqp.rabbit.listener.AbstractMessageListenerContainer.redeclareElementsIfNecessary(AbstractMessageListenerContainer.java:1923) ~[spring-rabbit-4.0.2.jar:4.0.2]
+	at org.springframework.amqp.rabbit.listener.SimpleMessageListenerContainer$AsyncMessageProcessingConsumer.initialize(SimpleMessageListenerContainer.java:1523) ~[spring-rabbit-4.0.2.jar:4.0.2]
+	at org.springframework.amqp.rabbit.listener.SimpleMessageListenerContainer$AsyncMessageProcessingConsumer.run(SimpleMessageListenerContainer.java:1356) ~[spring-rabbit-4.0.2.jar:4.0.2]
+	at java.base/java.lang.Thread.run(Thread.java:1474) ~[na:na]
+
+2026-04-26T17:31:02.078-05:00  INFO 8108 --- [rabbitmq-pubsub] [    Test worker] o.s.a.r.l.SimpleMessageListenerContainer : Broker not available; cannot force queue declarations during start: Cannot invoke "org.springframework.amqp.rabbit.connection.Connection.close()" because "connection" is null
+2026-04-26T17:31:02.081-05:00 ERROR 8108 --- [rabbitmq-pubsub] [ntContainer#1-1] o.s.a.r.l.SimpleMessageListenerContainer : Failed to check/redeclare auto-delete queue(s).
+
+java.lang.NullPointerException: Cannot invoke "org.springframework.amqp.rabbit.connection.Connection.createChannel(boolean)" because "connection" is null
+	at org.springframework.amqp.rabbit.core.RabbitTemplate.doExecute(RabbitTemplate.java:2243) ~[spring-rabbit-4.0.2.jar:4.0.2]
+	at org.springframework.amqp.rabbit.core.RabbitTemplate.execute(RabbitTemplate.java:2213) ~[spring-rabbit-4.0.2.jar:4.0.2]
+	at org.springframework.amqp.rabbit.core.RabbitTemplate.execute(RabbitTemplate.java:2193) ~[spring-rabbit-4.0.2.jar:4.0.2]
+	at org.springframework.amqp.rabbit.core.RabbitAdmin.getQueueInfo(RabbitAdmin.java:472) ~[spring-rabbit-4.0.2.jar:4.0.2]
+	at org.springframework.amqp.rabbit.core.RabbitAdmin.getQueueProperties(RabbitAdmin.java:456) ~[spring-rabbit-4.0.2.jar:4.0.2]
+	at org.springframework.amqp.rabbit.listener.AbstractMessageListenerContainer.attemptDeclarations(AbstractMessageListenerContainer.java:1959) ~[spring-rabbit-4.0.2.jar:4.0.2]
+	at org.springframework.amqp.rabbit.listener.AbstractMessageListenerContainer.redeclareElementsIfNecessary(AbstractMessageListenerContainer.java:1923) ~[spring-rabbit-4.0.2.jar:4.0.2]
+	at org.springframework.amqp.rabbit.listener.SimpleMessageListenerContainer$AsyncMessageProcessingConsumer.initialize(SimpleMessageListenerContainer.java:1523) ~[spring-rabbit-4.0.2.jar:4.0.2]
+	at org.springframework.amqp.rabbit.listener.SimpleMessageListenerContainer$AsyncMessageProcessingConsumer.run(SimpleMessageListenerContainer.java:1356) ~[spring-rabbit-4.0.2.jar:4.0.2]
+	at java.base/java.lang.Thread.run(Thread.java:1474) ~[na:na]
+
+2026-04-26T17:31:02.110-05:00  INFO 8108 --- [rabbitmq-pubsub] [    Test worker] c.c.r.RabbitmqPubsubApplicationTests     : Started RabbitmqPubsubApplicationTests in 10.234 seconds (process running for 13.112)
+2026-04-26T17:31:02.124-05:00  WARN 8108 --- [rabbitmq-pubsub] [    Test worker] o.s.core.events.SpringDocAppInitializer  : SpringDoc /v3/api-docs endpoint is enabled by default. To disable it in production, set the property 'springdoc.api-docs.enabled=false'
+2026-04-26T17:31:02.125-05:00  WARN 8108 --- [rabbitmq-pubsub] [    Test worker] o.s.core.events.SpringDocAppInitializer  : SpringDoc /swagger-ui.html endpoint is enabled by default. To disable it in production, set the property 'springdoc.swagger-ui.enabled=false'
+]]></system-out>
+  <system-err><![CDATA[Mockito is currently self-attaching to enable the inline-mock-maker. This will no longer work in future releases of the JDK. Please add Mockito as an agent to your build as described in Mockito's documentation: https://javadoc.io/doc/org.mockito/mockito-core/latest/org.mockito/org/mockito/Mockito.html#0.3
+WARNING: A Java agent has been loaded dynamically (C:\Users\sandi\.gradle\caches\modules-2\files-2.1\net.bytebuddy\byte-buddy-agent\1.17.8\f09415827a71be7ed621c7bd02550678f28bc81c\byte-buddy-agent-1.17.8.jar)
+WARNING: If a serviceability tool is in use, please run with -XX:+EnableDynamicAgentLoading to hide this warning
+WARNING: If a serviceability tool is not in use, please run with -Djdk.instrument.traceUsage for more information
+WARNING: Dynamic loading of agents will be disallowed by default in a future release
+]]></system-err>
+</testsuite>

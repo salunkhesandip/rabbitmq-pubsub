@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="com.cleancoders.rabbitmqpubsub.publisher.EmployeeEventPublisherTest" tests="2" skipped="0" failures="0" errors="0" timestamp="2026-04-26T22:31:07.720Z" hostname="SANDIP-PC01" time="0.492">
+  <properties/>
+  <testcase name="publishEmployeeCreated_sendsEventToFanoutExchange()" classname="com.cleancoders.rabbitmqpubsub.publisher.EmployeeEventPublisherTest" time="0.474"/>
+  <testcase name="publishEmployeeCreated_propagatesDistinctEventsIndependently()" classname="com.cleancoders.rabbitmqpubsub.publisher.EmployeeEventPublisherTest" time="0.014"/>
+  <system-out><![CDATA[2026-04-26T17:31:08.189-05:00  INFO 8108 --- [rabbitmq-pubsub] [    Test worker] c.c.r.publisher.EmployeeEventPublisher   : [PUBLISHER] Sending event: type=EMPLOYEE_CREATED, eventId=evt-001, employeeId=emp-001
+2026-04-26T17:31:08.191-05:00  INFO 8108 --- [rabbitmq-pubsub] [    Test worker] c.c.r.publisher.EmployeeEventPublisher   : [PUBLISHER] Event dispatched to exchange 'employee.events.fanout'
+2026-04-26T17:31:08.203-05:00  INFO 8108 --- [rabbitmq-pubsub] [    Test worker] c.c.r.publisher.EmployeeEventPublisher   : [PUBLISHER] Sending event: type=EMPLOYEE_CREATED, eventId=evt-A, employeeId=emp-A
+2026-04-26T17:31:08.206-05:00  INFO 8108 --- [rabbitmq-pubsub] [    Test worker] c.c.r.publisher.EmployeeEventPublisher   : [PUBLISHER] Event dispatched to exchange 'employee.events.fanout'
+2026-04-26T17:31:08.208-05:00  INFO 8108 --- [rabbitmq-pubsub] [    Test worker] c.c.r.publisher.EmployeeEventPublisher   : [PUBLISHER] Sending event: type=EMPLOYEE_CREATED, eventId=evt-B, employeeId=emp-B
+2026-04-26T17:31:08.209-05:00  INFO 8108 --- [rabbitmq-pubsub] [    Test worker] c.c.r.publisher.EmployeeEventPublisher   : [PUBLISHER] Event dispatched to exchange 'employee.events.fanout'
+]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>EmployeeEventPublisher.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">rabbitmq-pubsub</a> &gt; <a href="index.source.html" class="el_package">com.cleancoders.rabbitmqpubsub.publisher</a> &gt; <span class="el_source">EmployeeEventPublisher.java</span></div><h1>EmployeeEventPublisher.java</h1><pre class="source lang-java linenums">package com.cleancoders.rabbitmqpubsub.publisher;
+
+import com.cleancoders.rabbitmqpubsub.config.RabbitMQConfig;
+import com.cleancoders.rabbitmqpubsub.dto.EmployeeCreatedEvent;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.amqp.core.AmqpTemplate;
+import org.springframework.stereotype.Component;
+
+/**
+ * Publisher (Producer) that sends {@link EmployeeCreatedEvent} messages to the
+ * fanout exchange.
+ *
+ * &lt;p&gt;The fanout exchange automatically broadcasts the message to every queue that
+ * is bound to it — {@code employee.notification.queue} and {@code employee.audit.queue}
+ * — without the publisher knowing anything about its consumers.
+ *
+ * &lt;p&gt;Routing key is an empty string because fanout exchanges ignore it entirely.
+ */
+@Component
+public class EmployeeEventPublisher {
+
+<span class="fc" id="L23">    private static final Logger log = LoggerFactory.getLogger(EmployeeEventPublisher.class);</span>
+
+    private final AmqpTemplate amqpTemplate;
+
+<span class="fc" id="L27">    public EmployeeEventPublisher(AmqpTemplate amqpTemplate) {</span>
+<span class="fc" id="L28">        this.amqpTemplate = amqpTemplate;</span>
+<span class="fc" id="L29">    }</span>
+
+    /**
+     * Publishes an {@link EmployeeCreatedEvent} to the fanout exchange.
+     *
+     * @param event the event to broadcast
+     */
+    public void publishEmployeeCreated(EmployeeCreatedEvent event) {
+<span class="fc" id="L37">        log.info(&quot;[PUBLISHER] Sending event: type={}, eventId={}, employeeId={}&quot;,</span>
+<span class="fc" id="L38">                event.eventType(), event.eventId(), event.employeeId());</span>
+        // routingKey &quot;&quot; — fanout exchange ignores it; message goes to ALL bound queues
+<span class="fc" id="L40">        amqpTemplate.convertAndSend(RabbitMQConfig.EXCHANGE_NAME, &quot;&quot;, event);</span>
+<span class="fc" id="L41">        log.info(&quot;[PUBLISHER] Event dispatched to exchange '{}'&quot;, RabbitMQConfig.EXCHANGE_NAME);</span>
+<span class="fc" id="L42">    }</span>
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.14.202510111229</span></div></body></html>

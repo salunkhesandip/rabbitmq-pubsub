@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="com.cleancoders.rabbitmqpubsub.consumer.NotificationConsumerTest" tests="2" skipped="0" failures="0" errors="0" timestamp="2026-04-26T22:31:03.344Z" hostname="SANDIP-PC01" time="0.112">
+  <properties/>
+  <testcase name="handleEmployeeCreated_processesEventWithoutException()" classname="com.cleancoders.rabbitmqpubsub.consumer.NotificationConsumerTest" time="0.097"/>
+  <testcase name="handleEmployeeCreated_handlesMultipleEventsSequentially()" classname="com.cleancoders.rabbitmqpubsub.consumer.NotificationConsumerTest" time="0.012"/>
+  <system-out><![CDATA[2026-04-26T17:31:03.441-05:00  INFO 8108 --- [rabbitmq-pubsub] [    Test worker] c.c.r.consumer.NotificationConsumer      : [NOTIFICATION] Employee created — sending welcome e-mail. name='Alice Smith', email='alice@example.com', department='Engineering'
+2026-04-26T17:31:03.442-05:00 DEBUG 8108 --- [rabbitmq-pubsub] [    Test worker] c.c.r.consumer.NotificationConsumer      : [NOTIFICATION] (stub) welcome email sent to alice@example.com
+2026-04-26T17:31:03.442-05:00  INFO 8108 --- [rabbitmq-pubsub] [    Test worker] c.c.r.consumer.NotificationConsumer      : [NOTIFICATION] Welcome e-mail dispatched for employeeId='emp-001'
+2026-04-26T17:31:03.448-05:00  INFO 8108 --- [rabbitmq-pubsub] [    Test worker] c.c.r.consumer.NotificationConsumer      : [NOTIFICATION] Employee created — sending welcome e-mail. name='Bob', email='bob@example.com', department='HR'
+2026-04-26T17:31:03.449-05:00 DEBUG 8108 --- [rabbitmq-pubsub] [    Test worker] c.c.r.consumer.NotificationConsumer      : [NOTIFICATION] (stub) welcome email sent to bob@example.com
+2026-04-26T17:31:03.450-05:00  INFO 8108 --- [rabbitmq-pubsub] [    Test worker] c.c.r.consumer.NotificationConsumer      : [NOTIFICATION] Welcome e-mail dispatched for employeeId='emp-A'
+2026-04-26T17:31:03.452-05:00  INFO 8108 --- [rabbitmq-pubsub] [    Test worker] c.c.r.consumer.NotificationConsumer      : [NOTIFICATION] Employee created — sending welcome e-mail. name='Carol', email='carol@example.com', department='Finance'
+2026-04-26T17:31:03.453-05:00 DEBUG 8108 --- [rabbitmq-pubsub] [    Test worker] c.c.r.consumer.NotificationConsumer      : [NOTIFICATION] (stub) welcome email sent to carol@example.com
+2026-04-26T17:31:03.454-05:00  INFO 8108 --- [rabbitmq-pubsub] [    Test worker] c.c.r.consumer.NotificationConsumer      : [NOTIFICATION] Welcome e-mail dispatched for employeeId='emp-B'
+]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

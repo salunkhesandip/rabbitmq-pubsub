@@ -1,0 +1,17 @@
+# Version catalog for centralized dependency versions
+
+[versions]
+springboot = "4.0.5"
+springdoc = "3.0.0"
+
+[libraries]
+springBootBom             = { module = "org.springframework.boot:spring-boot-dependencies",        version.ref = "springboot" }
+springBootStarterAmqp     = { module = "org.springframework.boot:spring-boot-starter-amqp",        version.ref = "springboot" }
+springBootStarterWeb      = { module = "org.springframework.boot:spring-boot-starter-web",         version.ref = "springboot" }
+springBootStarterTest     = { module = "org.springframework.boot:spring-boot-starter-test",        version.ref = "springboot" }
+springBootStarterWebMvcTest = { module = "org.springframework.boot:spring-boot-starter-webmvc-test", version.ref = "springboot" }
+springRabbitTest          = { module = "org.springframework.amqp:spring-rabbit-test",              version.ref = "springboot" }
+springdocOpenapi          = { module = "org.springdoc:springdoc-openapi-starter-webmvc-ui",        version.ref = "springdoc"   }
+
+[plugins]
+springBoot = { id = "org.springframework.boot", version.ref = "springboot" }

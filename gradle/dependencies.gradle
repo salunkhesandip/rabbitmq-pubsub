@@ -1,0 +1,28 @@
+/**
+ * Centralized dependency declarations.
+ * All versions are managed via gradle/libs.versions.toml (Version Catalog).
+ */
+dependencies {
+    // -------------------------------------------------------------------------
+    // Platform — import Spring Boot BOM to align all managed dependency versions
+    // -------------------------------------------------------------------------
+    implementation(enforcedPlatform(libs.springBootBom))
+
+    // -------------------------------------------------------------------------
+    // Spring Boot starters
+    // -------------------------------------------------------------------------
+    implementation libs.springBootStarterWeb
+    implementation libs.springBootStarterAmqp
+
+    // -------------------------------------------------------------------------
+    // API documentation
+    // -------------------------------------------------------------------------
+    implementation libs.springdocOpenapi
+
+    // -------------------------------------------------------------------------
+    // Test dependencies
+    // -------------------------------------------------------------------------
+    testImplementation libs.springBootStarterTest
+    testImplementation libs.springBootStarterWebMvcTest
+    testImplementation libs.springRabbitTest
+}

@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>RabbitMQConfig.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">rabbitmq-pubsub</a> &gt; <a href="index.source.html" class="el_package">com.cleancoders.rabbitmqpubsub.config</a> &gt; <span class="el_source">RabbitMQConfig.java</span></div><h1>RabbitMQConfig.java</h1><pre class="source lang-java linenums">package com.cleancoders.rabbitmqpubsub.config;
+
+import org.springframework.amqp.core.AmqpTemplate;
+import org.springframework.amqp.core.Binding;
+import org.springframework.amqp.core.BindingBuilder;
+import org.springframework.amqp.core.FanoutExchange;
+import org.springframework.amqp.core.Queue;
+import org.springframework.amqp.rabbit.connection.ConnectionFactory;
+import org.springframework.amqp.rabbit.core.RabbitTemplate;
+import org.springframework.amqp.support.converter.Jackson2JsonMessageConverter;
+import org.springframework.amqp.support.converter.MessageConverter;
+import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
+
+/**
+ * RabbitMQ topology declaration.
+ *
+ * &lt;p&gt;Pattern: Fanout Exchange — all messages are broadcast to every bound queue,
+ * routing key is ignored.
+ *
+ * &lt;pre&gt;
+ *                        ┌────────────────────────────┐
+ *  Publisher ──►  [employee.events.fanout]  ──►  employee.notification.queue ──► NotificationConsumer
+ *                        │                  ──►  employee.audit.queue        ──► AuditConsumer
+ *                        └────────────────────────────┘
+ * &lt;/pre&gt;
+ */
+@Configuration
+<span class="fc" id="L29">public class RabbitMQConfig {</span>
+
+    // ── Exchange ──────────────────────────────────────────────────────────────
+    public static final String EXCHANGE_NAME = &quot;employee.events.fanout&quot;;
+
+    // ── Queues ────────────────────────────────────────────────────────────────
+    public static final String NOTIFICATION_QUEUE = &quot;employee.notification.queue&quot;;
+    public static final String AUDIT_QUEUE        = &quot;employee.audit.queue&quot;;
+
+    // ── Exchange bean ─────────────────────────────────────────────────────────
+    @Bean
+    public FanoutExchange employeeEventsFanoutExchange() {
+<span class="fc" id="L41">        return new FanoutExchange(EXCHANGE_NAME);</span>
+    }
+
+    // ── Queue beans ───────────────────────────────────────────────────────────
+
+    /** Durable notification queue — survives broker restart. */
+    @Bean
+    public Queue notificationQueue() {
+<span class="fc" id="L49">        return new Queue(NOTIFICATION_QUEUE, true);</span>
+    }
+
+    /** Durable audit queue — survives broker restart. */
+    @Bean
+    public Queue auditQueue() {
+<span class="fc" id="L55">        return new Queue(AUDIT_QUEUE, true);</span>
+    }
+
+    // ── Bindings: both queues receive every event from the fanout exchange ────
+
+    @Bean
+    public Binding notificationBinding(Queue notificationQueue,
+                                       FanoutExchange employeeEventsFanoutExchange) {
+<span class="fc" id="L63">        return BindingBuilder.bind(notificationQueue).to(employeeEventsFanoutExchange);</span>
+    }
+
+    @Bean
+    public Binding auditBinding(Queue auditQueue,
+                                FanoutExchange employeeEventsFanoutExchange) {
+<span class="fc" id="L69">        return BindingBuilder.bind(auditQueue).to(employeeEventsFanoutExchange);</span>
+    }
+
+    // ── Message serialization — JSON via Jackson ──────────────────────────────
+
+    /**
+     * Jackson2JsonMessageConverter serializes/deserializes AMQP messages to/from
+     * JSON format.
+     *
+     * &lt;p&gt;Note: Jackson2JsonMessageConverter is marked for removal in a future 
+     * Spring AMQP version, but remains the standard way to handle JSON conversion.
+     */
+    @Bean
+    public MessageConverter jacksonMessageConverter() {
+        @SuppressWarnings({&quot;deprecation&quot;, &quot;removal&quot;})
+<span class="fc" id="L84">        Jackson2JsonMessageConverter converter = new Jackson2JsonMessageConverter();</span>
+<span class="fc" id="L85">        return converter;</span>
+    }
+
+    @Bean
+    public AmqpTemplate amqpTemplate(ConnectionFactory connectionFactory) {
+<span class="fc" id="L90">        RabbitTemplate rabbitTemplate = new RabbitTemplate(connectionFactory);</span>
+<span class="fc" id="L91">        rabbitTemplate.setMessageConverter(jacksonMessageConverter());</span>
+<span class="fc" id="L92">        return rabbitTemplate;</span>
+    }
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.14.202510111229</span></div></body></html>
